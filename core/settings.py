@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'disqus',
     'django_summernote',
 
     'blog',
@@ -55,7 +54,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'core.urls.py'
+ROOT_URLCONF = 'core.urls'
 
 TEMPLATES = [
     {
@@ -127,7 +126,6 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 
 MEDIA_URL = '/static/media/'
@@ -142,8 +140,3 @@ LOGIN_URL = '/login'
 
 # Summernote settings
 SUMMERNOTE_THEME = 'bs4'
-
-# Disqus settings
-DISQUS_API_KEY = '97j0V0asopy55EH1IwYUzy91vLxJB4IevHgpNWleUUrrNcG7oatBn1TVdL5GL7z0'
-DISQUS_WEBSITE_SHORTNAME = 'hackblog-1'
-SITE_ID = 1
