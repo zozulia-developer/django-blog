@@ -1,22 +1,22 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
-{%  block content %}
+{% block content %}
 <div class="col-12">
     <div class="d-flex justify-content-center">
-        <div style="margin: 10px; padding: 15px; border: 3px solid #F7F7F7; border-radius: 5px;">
+        <div class="sign-up">
             <form method="post">
-                {%  csrf_token %}
+                {% csrf_token %}
 
                     {% for field in form %}
                         <div class="form-group">
-                            {{field.label_tag}}
+                            {{ field.label_tag }}
                             <div>
-                                {{field}}
+                                {{ field }}
                             </div>
-                            {% if field.errors%}
+                            {% if field.errors %}
                             {% for error in field.errors %}
                             <div class="alert alert-danger">
-                                {{error}}
+                                {{ error }}
                             </div>
                             {% endfor %}
                             {% endif %}
@@ -28,4 +28,4 @@
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock content %}

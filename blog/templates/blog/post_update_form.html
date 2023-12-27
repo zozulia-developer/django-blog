@@ -1,8 +1,8 @@
-{% extends 'blog/base_blog.html' %}
+{% extends "blog/base_blog.html" %}
 
 {% block title %}
 	Edit Post "{{ post.title }}" - {{ block.super }}
-{% endblock %}
+{% endblock title %}
 
 {% block start_content %}
 	<form action="{{ post.get_update_url }}" method="post">
@@ -24,4 +24,4 @@
 
 			<button type="submit" class="btn btn-primary">Edit Post</button>
 	</form>
-{% endblock %}
+{% endblock start_content %}

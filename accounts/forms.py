@@ -1,5 +1,5 @@
-from django.forms import ModelForm, Form, CharField, PasswordInput
 from django.contrib.auth import get_user_model
+from django.forms import CharField, Form, ModelForm, PasswordInput
 
 
 class SignUpForm(ModelForm):

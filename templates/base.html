@@ -1,9 +1,10 @@
 {% load static %}
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+	<meta charset="utf-8">
+	<meta name="keywords" content="test,blog"/>
+	<meta name="description" content="blog"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie-edge">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -13,15 +14,15 @@
 	<title>
 		{% block title %}
 			Blog Post
-		{% endblock %}
+		{% endblock title %}
 	</title>
 </head>
 <body>
 	<!-- Navigation menu -->
 	<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
 		<div class="container flex-row">
-			<a class="navbar-brand" href="/">
-				<img class="d-inline-block align-top" src="{% static 'img/logo.svg' %}" alt="Real Python" height="40">
+			<a class="navbar-brand" href="{% url 'posts_list_url' %}">
+				<img class="d-inline-block align-top" src="{% static 'img/logo.svg' %}" alt="Real Python" height="40" width="140">
 			</a>
 			<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -40,23 +41,23 @@
 					</li>
 				</ul>
                 <div class="welcome-text">
-					{%  if request.user.is_authenticated %}
+					{% if request.user.is_authenticated %}
 						<h6> Welcome home, {{ request.user.username }}! </h6>
 					{% endif %}
 				</div>
 				<ul class="navbar-nav">
-				  {%  if not request.user.is_authenticated %}
+				  {% if not request.user.is_authenticated %}
 					<li class="nav-item">
-					  <a class="nav-link" href="{% url "signup" %}">Sign Up</a>
+					  <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
 					</li>
 					<li class="nav-item">
-					  <a class="nav-link" href="{% url "login" %}">Login</a>
+					  <a class="nav-link" href="{% url 'login' %}">Login</a>
 					</li>
 				  {% else %}
 					<li class="nav-item">
-					  <a class="nav-link" href="{% url "logout" %}">Logout</a>
+					  <a class="nav-link" href="{% url 'logout' %}">Logout</a>
 					</li>
-				  {%  endif %}
+				  {% endif %}
 				</ul>
 
 				<form class="form-inline my-2 my-lg-0" action="{% url 'posts_list_url' %}">
@@ -68,14 +69,14 @@
 	</nav>
 
 	<!-- Main content -->
-	<div class="container main-content" style="flex: 1; margin-top: 1.5rem;">
+	<div class="container main-content">
 		<div class="row justify-content-center">
 
-			{% block start_content%}
-			{% endblock %}
+			{% block start_content %}
+			{% endblock start_content %}
 
 			{% block content %}
-			{% endblock %}
+			{% endblock content %}
 
 			{% if is_paginated %}
 				<div class="col-12">
@@ -87,7 +88,7 @@
 							</li>
 
 							  {% for n in page_object.paginator.page_range %}
-								{%if page_object.number == n %}
+								{% if page_object.number == n %}
 									<li class="page-item active" aria-current="page">
 										<a class="page-link" href="?page={{ n }}">{{ n }}<span class="sr-only">(current)</span></a>
 									</li>
@@ -112,8 +113,8 @@
 
 	{% if request.user.is_authenticated and request.user.is_staff %}
 		<div class="admin-panel align-items-center">
-			<a href="/admin" class="btn btn-outline-info">Admin</a>
-			{% block admin-panel%}{% endblock %}
+			<a href="{% url 'admin:index' %}" class="btn btn-outline-info">Admin</a>
+			{% block admin-panel %}{% endblock admin-panel %}
 		</div>
 	{% endif %}
 
@@ -122,7 +123,7 @@
 		<div class="container">
 			<div class="w-100 my-3 text-center"></div>
 			<p class="text-center text-muted">
-				@ 2019
+				@ 2023
 				<a href="https://www.youtube.com/" target="_blank">Youtube</a>
 				-
 				<a href="#">Twitter</a>
@@ -131,14 +132,13 @@
 				-
 				<a href="#">Instagram</a>
 				<br>
-				<a href="/">Python Tutorials</a>
+				<a href="{% url 'posts_list_url' %}">Python Tutorials</a>
 				<br>
 				❤️ Happy Pythoning!
 			</p>
 		</div>
 	</footer>
 
-	<script id="dsq-count-scr" src="//hackblog-1.disqus.com/count.js" async></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>

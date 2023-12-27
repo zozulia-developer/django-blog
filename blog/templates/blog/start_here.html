@@ -1,16 +1,18 @@
-{% extends 'blog/base_blog.html' %}
+{% extends "blog/base_blog.html" %}
 {% load static %}
 
 {% block title %}
     Start Here
-{% endblock %}
+{% endblock title %}
 
 {% block start_content %}
 
     <div class="col-md-10 col-lg-8 article">
         <div class="article-body page-body">
             <h1 class="text-center my-5">Learn Python Programming,<br>By Example</h1>
-            <p class="text-center"><img class="img-fluid mx-auto d-block rounded-circle w-33 mb-5" src="{% static 'img/img_1.jpg' %}" alt="Real Python Logo" sizes="75vw"></p>
+            <p class="text-center">
+                <img class="img-fluid mx-auto d-block rounded-circle w-33 mb-5" src="{% static 'img/img_1.jpg' %}" alt="Real Python Logo" sizes="75vw" height="200" width="200">
+            </p>
             <p class="mb-5">
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
@@ -20,4 +22,4 @@
         </div>
     </div>
 
-{% endblock %}
+{% endblock start_content %}

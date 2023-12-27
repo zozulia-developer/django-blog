@@ -1,9 +1,8 @@
 from django import forms
-from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
 from django.core.exceptions import ValidationError
-from django.contrib.auth import get_user_model
+from django_summernote.widgets import SummernoteWidget
 
-from .models import Tag, Post
+from .models import Post, Tag
 
 
 class TagForm(forms.ModelForm):

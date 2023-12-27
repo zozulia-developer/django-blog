@@ -14,10 +14,6 @@
 					<a class="badge badge-light text-muted" href="{{ tag.get_absolute_url }}">{{ tag.title }}</a>
 				{% endfor %}
 			</p>
-			{% load disqus_tags %}
-			<small class="text-muted">
-				<a href="{{ post.get_absolute_url }}#disqus_thread" id="dsq-count-src">View Comments</a>
-			</small>
 		</div>
 	</div>
 </div>

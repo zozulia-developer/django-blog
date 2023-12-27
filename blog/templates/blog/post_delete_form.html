@@ -1,8 +1,8 @@
-{% extends 'blog/base_blog.html' %}
+{% extends "blog/base_blog.html" %}
 
 {% block title %}
 	Delete Post "{{ post.title|title }}" - {{ block.super }}
-{% endblock %}
+{% endblock title %}
 
 {% block start_content %}
 	<form action="{{ post.get_delete_url }}" method="post">
@@ -12,4 +12,4 @@
 		<a href="{{ post.get_absolute_url }}">Cancel</a>
 		<button class="btn btn-danger" type="submit" name="button">Delete</button>
 	</form>
-{% endblock %}
+{% endblock start_content %}

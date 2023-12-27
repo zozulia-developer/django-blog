@@ -1,9 +1,8 @@
-{% extends 'blog/base_blog.html' %}
-{% load disqus_tags %}
+{% extends "blog/base_blog.html" %}
 
 {% block title %}
 	{{ post.title }} - {{ block.super }}
-{% endblock %}
+{% endblock title %}
 
 {% block start_content %}
 	<div class="container main-content">
@@ -43,8 +42,8 @@
 				</div>
 			</div>
 			<aside class="col-md-7 col-lg-4">
-				{% include 'blog/includes/aside_tutorial_topics.html' %}
+				{% include "blog/includes/aside_tutorial_topics.html" %}
 			</aside>
 		</div>
 	</div>
-{% endblock %}
+{% endblock start_content %}

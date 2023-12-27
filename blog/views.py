@@ -1,11 +1,13 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
-from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from django.db.models import Q
-from django.shortcuts import render, redirect
+from django.shortcuts import render
+from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
 
-from .forms import TagForm, PostForm
-from .utils import *
+from .forms import PostForm, TagForm
+from .models import Post, Tag
+from .utils import (ObjectCreateMixin, ObjectDeleteMixin, ObjectDetailMixin,
+                    ObjectUpdateMixin)
 
 
 def posts_list(request):
@@ -60,7 +62,7 @@ class PostCreate(LoginRequiredMixin, ObjectCreateMixin, CreateView):
 
 class PostUpdate(LoginRequiredMixin, ObjectUpdateMixin, UpdateView):
     model = Post
-    fields = '__all__'  # question about that
+    fields = '__all__'
     model_form = PostForm
     template = 'blog/post_update_form.html'
     raise_exception = True

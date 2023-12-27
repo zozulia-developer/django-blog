@@ -1,0 +1,26 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-ast
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: end-of-file-fixer
+        exclude: (migrations)
+      - id: trailing-whitespace
+      - id: requirements-txt-fixer
+
+  - repo: https://github.com/pycqa/isort
+    rev: '5.13.2'
+    hooks:
+      - id: isort
+
+  - repo: https://github.com/Riverside-Healthcare/djLint
+    rev: v1.34.0
+    hooks:
+      - id: djlint-django
+
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: 'v0.1.8'
+    hooks:
+      - id: ruff
