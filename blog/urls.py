@@ -1,8 +1,8 @@
 from django.urls import path
 
 from blog.views import (PostCreate, PostDelete, PostDetail, PostUpdate,
-                        TagCreate, TagDelete, TagDetail, TagUpdate, posts_list,
-                        start_here)
+                        StartHereView, TagCreate, TagDelete, TagDetail,
+                        TagUpdate, posts_list)
 
 urlpatterns = [
     path('', posts_list, name="posts_list_url"),
@@ -14,5 +14,5 @@ urlpatterns = [
     path('tag/<str:slug>/', TagDetail.as_view(), name='tag_detail_url'),
     path('tag/<str:slug>/update/', TagUpdate.as_view(), name='tag_update_url'),
     path('tag/<str:slug>/delete/', TagDelete.as_view(), name='tag_delete_url'),
-    path('start-here/', start_here, name='start_here_url')
+    path('start-here/', StartHereView.as_view(), name='start_here_url')
 ]

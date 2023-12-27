@@ -2,6 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render
+from django.views import View
 from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
 
 from .forms import PostForm, TagForm
@@ -100,5 +101,8 @@ class TagDelete(LoginRequiredMixin, ObjectDeleteMixin, DeleteView):
     raise_exception = True
 
 
-def start_here(request):
-    return render(request, 'blog/start_here.html')
+class StartHereView(View):
+    template_name = 'blog/start_here.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)

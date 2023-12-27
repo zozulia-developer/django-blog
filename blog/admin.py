@@ -13,3 +13,4 @@ class ArticleAdmin(SummernoteModelAdmin):
 
 
 admin.site.register(models.Post, ArticleAdmin)
+admin.site.register(models.Tag)
