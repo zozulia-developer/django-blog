@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{%  block content %}
+<div class="col-12">
+    <div class="d-flex justify-content-center">
+        <div style="margin: 10px; padding: 15px; border: 3px solid #F7F7F7; border-radius: 5px;">
+            <form method="post">
+                {%  csrf_token %}
+
+                    {% for field in form %}
+                        <div class="form-group">
+                            {{field.label_tag}}
+                            <div>{{field}}</div>
+                            {% if field.errors%}
+                            {% for error in field.errors %}
+                            <div class="alert alert-danger">
+                                {{error}}
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+
+                    <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+{%  endblock %}

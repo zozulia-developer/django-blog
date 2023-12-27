@@ -1,0 +1,23 @@
+<div class="col-12 col-md-6 col-lg-4 mb-2">
+	<div class="card mb-4 border-0">
+		<a href="{{ post.get_absolute_url }}">
+			<div class="embed-responsive embed-responsive-16by9">
+				<img class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" src="{{ MEDIA_URL }}{{ post.image.url }}" alt="" sizes="25vw" width="1920" height="1080">
+			</div>
+		</a>
+		<div class="card-body m-0 p-0 mt-2">
+			<a href="{{ post.get_absolute_url }}"><h2 class="card-title h4 my-0 py-0">{{ post.title }}</h2></a>
+			<p class="card-text mb-0">
+				<small class="text-muted">{{ post.date_pub }}</small>
+				<span class="ml-2 fa fa-tags"></span>
+				{% for tag in post.tags.all %}
+					<a class="badge badge-light text-muted" href="{{ tag.get_absolute_url }}">{{ tag.title }}</a>
+				{% endfor %}
+			</p>
+			{% load disqus_tags %}
+			<small class="text-muted">
+				<a href="{{ post.get_absolute_url }}#disqus_thread" id="dsq-count-src">View Comments</a>
+			</small>
+		</div>
+	</div>
+</div>

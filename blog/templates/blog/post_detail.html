@@ -1,0 +1,50 @@
+{% extends 'blog/base_blog.html' %}
+{% load disqus_tags %}
+
+{% block title %}
+	{{ post.title }} - {{ block.super }}
+{% endblock %}
+
+{% block start_content %}
+	<div class="container main-content">
+		<div class="row justify-content-center">
+			<div class="col-md-11 col-lg-8 article">
+				<figure class="embed-responsive embed-responsive-16by9">
+					{% if post.image %}
+						<img class="card-img-top m-0 p-0 embed-responsive-item rounded" style="object-fit: contain;" src="{{ MEDIA_URL }}{{ post.image.url }}" alt="python" sizes="75vw" width="1920" height="1080">
+					{% endif %}
+				</figure>
+				<h1 class="mt-5">
+					{{ post.title }}
+				</h1>
+				<p>
+					<span class="text-muted">
+						by {{ post.author }}
+						<span class="ml-3 far fa-clock">
+							{{ post.date_pub }}
+						</span>
+						<span class="ml-3 mr-1 fa fa-comment">
+							<span class="disqus-comment-count text-muted" data-disqus-identifier="{{ post.get_absolute_url }}">[error]</span>
+						</span>
+						{% for tag in post.tags.all %}
+							<span class="ml-2 fa fa-tags"></span>
+							<a class="badge badge-light text-muted" href="{{ tag.get_absolute_url }}">{{ tag.title }}</a>
+						{% endfor %}
+					</span>
+				</p>
+				<div class="article-body">
+					<p>
+						{{ post.body|safe }}
+					</p>
+				</div>
+				<div id="reader-comments" class="card mt-4">
+					<p class="card-header h3">Comments</p>
+					{% disqus_show_comments %}
+				</div>
+			</div>
+			<aside class="col-md-7 col-lg-4">
+				{% include 'blog/includes/aside_tutorial_topics.html' %}
+			</aside>
+		</div>
+	</div>
+{% endblock %}

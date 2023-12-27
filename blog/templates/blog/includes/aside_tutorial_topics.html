@@ -1,0 +1,10 @@
+<div class="sidebar-module sidebar-module-insert border">
+    <p class="h4">
+        All Tutorial Topics
+    </p>
+    {% for tag in tags %}
+        <a class="badge badge-light text-muted" href="{{ tag.get_absolute_url }}">
+            {{ tag.title }}
+        </a>
+    {% endfor %}
+</div>
